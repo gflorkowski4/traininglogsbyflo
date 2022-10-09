@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Entries:</h2>
 
-<a class="btn btn-dark" href="{% url 'training_logs:new_entry' topic.id %}" role="button">Add New Training Entry</a>
+<a class="btn btn-primary" href="{% url 'training_logs:new_entry' topic.id %}" role="button">Add New Training Entry</a>
 </br>
 </br>
 {% for entry in entries %} 
@@ -17,6 +17,7 @@
         <a class="btn btn-primary" href="{% url 'training_logs:edit_entry' entry.id %}" role="button">Edit Entry</a>
         </div>
     </div>
+</br>
 {% endfor %}
 
 {% endblock content %}
