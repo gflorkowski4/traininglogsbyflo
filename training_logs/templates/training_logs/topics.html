@@ -1,0 +1,14 @@
+{% extends "training_logs/base.html" %}
+
+{% block page_header %}<h1>Topics</h1>{% endblock page_header %}
+{% block content %}
+<div class="list-group">
+    {% for topic in topics %}
+    <a href="{% url 'training_logs:topic' topic.id %}" class="list-group-item list-group-item-action">{{ topic }}</a>
+    {% empty %}
+        <li>No Topics Have been Added</li>
+    {% endfor %}
+  </div>
+</br>
+  <a class="btn btn-dark" href="{% url 'training_logs:new_topic' %}" role="button">Add New Training Topic</a>
+{% endblock content %}
