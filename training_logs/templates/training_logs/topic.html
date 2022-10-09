@@ -9,7 +9,7 @@
 </br>
 </br>
 {% for entry in entries %} 
-    <div class="card" style="width: 18rem;">
+    <div class="card text-black" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title">{{ entry.date_added|date:'M d, Y H:i ' }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Date Training Conducted: {{ entry.date_training_conducted}}| Hours: {{ entry.hours }} </h6>
