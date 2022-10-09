@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-3mqs3&m__nke!*2h@&4^)%$g&yv_g=u1a@c$depe90k7$+_#l6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -124,4 +125,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'users:login'
 
+django_on_heroku.settings(locals())
 
