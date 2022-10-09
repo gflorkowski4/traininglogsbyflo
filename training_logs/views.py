@@ -6,9 +6,6 @@ from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
 # Create your views here.
-def test(request):
-    """Testing"""
-    return render(request, 'training_logs/index2.html')
 def index(request):
     """The Home page for Training Logs"""
     return render(request, 'training_logs/index.html')
