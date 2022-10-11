@@ -15,6 +15,7 @@ def topics(request):
     topics = Topic.objects.filter(owner=request.user).order_by('data_added')
     context= {'topics':topics}
     return render(request, 'training_logs/topics.html', context)
+
 @login_required
 def topic(request, topic_id):
     """Shows a single topic and all its entries"""
@@ -25,6 +26,7 @@ def topic(request, topic_id):
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic':topic, 'entries':entries}
     return render(request, 'training_logs/topic.html', context)
+
 @login_required
 def new_topic(request):
     """Add a new topic"""
@@ -43,6 +45,7 @@ def new_topic(request):
     # Display a blank or invalid form
     context = {'form': form}
     return render(request, 'training_logs/new_topic.html', context)
+
 @login_required
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic"""
@@ -63,6 +66,7 @@ def new_entry(request, topic_id):
     # Display blank or invalid form
     context = {'topic': topic, 'form':form}
     return render(request, 'training_logs/new_entry.html', context)
+    
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry."""

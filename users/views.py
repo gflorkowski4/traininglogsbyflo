@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from training_logs.models import Entry
+from training_logs.models import Entry, Topic
+from django.contrib.auth.models import User
 
 # Create your views here for Users app
 def register(request):
@@ -25,5 +26,8 @@ def register(request):
 def dashboard(request):
     """Dashboard to present data"""
     entries = Entry.objects.all()
-    return render(request, 'registration/dashboard.html', {'entries':entries} )
+    topics = Topic.objects.all()
+    users = User.objects.all()
+    total_hours = 0
+    return render(request, 'registration/dashboard.html', {'entries':entries, 'topics':topics, 'users':users,} )
     

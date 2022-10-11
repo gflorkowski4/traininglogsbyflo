@@ -4,25 +4,30 @@
 
 {% block content %}
 <h2>Dashboard Stuff-in progress</h2>
-    <table class="table table-light table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Student</th>
-            <th scope="col">Topic</th>
-            <th scope="col">Date Training Conducted</th>
-            <th scope="col">Training Hours</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for entry in entries %}
-          <tr>
-            <th scope="row">{{ entry.topic.owner }}</th>
-            <td>{{ entry.topic }}</td>
-            <td>{{ entry.date_training_conducted }}</td>
-            <td>{{ entry.hours }}</td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+{% for user in users %}
+<table class="table table-light table-hover">
+  <thead>
+    <tr>
+      <th scope="col">{{ user }}</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Date Training Conducted</th>
+      <th scope="col">Training Hours</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {% for entry in entries %}
+    {% if user.id == entry.topic.owner.id %}
+    <tr>
+      <th scope="row">{{ entry.topic.owner }}</th>
+      <td>{{ entry.topic }}</td>
+      <td>{{ entry.date_training_conducted }}</td>
+      <td>{{ entry.hours }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endfor %}
 
 {% endblock content %}
