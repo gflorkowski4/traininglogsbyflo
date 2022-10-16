@@ -25,9 +25,10 @@ def register(request):
 
 def dashboard(request):
     """Dashboard to present data"""
+    owner = request.user
     entries = Entry.objects.all()
     topics = Topic.objects.all()
     users = User.objects.all()
     total_hours = 0
-    return render(request, 'registration/dashboard.html', {'entries':entries, 'topics':topics, 'users':users,} )
+    return render(request, 'registration/dashboard.html', {'entries':entries, 'topics':topics, 'users':users,'owner':owner} )
     

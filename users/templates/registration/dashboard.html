@@ -3,12 +3,14 @@
 {% block page_header %}<h1>Dashboard</h1>{% endblock page_header %}
 
 {% block content %}
-<h2>Dashboard Stuff-in progress</h2>
+
+
+<h2>Welcome to your Dashboard {{ owner }}</h2>
 {% for user in users %}
+{% if owner == user %}
 <table class="table table-light table-hover">
   <thead>
     <tr>
-      <th scope="col">{{ user }}</th>
       <th scope="col">Topic</th>
       <th scope="col">Date Training Conducted</th>
       <th scope="col">Training Hours</th>
@@ -19,8 +21,7 @@
     {% for entry in entries %}
     {% if user.id == entry.topic.owner.id %}
     <tr>
-      <th scope="row">{{ entry.topic.owner }}</th>
-      <td>{{ entry.topic }}</td>
+      <th scope="row">{{ entry.topic}}</th>
       <td>{{ entry.date_training_conducted }}</td>
       <td>{{ entry.hours }}</td>
     </tr>
@@ -28,6 +29,7 @@
     {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endfor %}
 
 {% endblock content %}
