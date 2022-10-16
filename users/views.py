@@ -29,6 +29,20 @@ def dashboard(request):
     entries = Entry.objects.all()
     topics = Topic.objects.all()
     users = User.objects.all()
-    total_hours = 0
-    return render(request, 'registration/dashboard.html', {'entries':entries, 'topics':topics, 'users':users,'owner':owner} )
+    total_hours = {}
+
+    for user in users:
+        hours_total = 0
+        for entry in entries:
+            if user == entry.topic.owner:
+                hours_total += entry.hours
+        total_hours[user] = hours_total
+
+
+    return render(request, 'registration/dashboard.html', 
+    {'entries':entries, 
+    'topics':topics, 
+    'users':users,
+    'owner':owner,
+    'total_hours':total_hours})
     

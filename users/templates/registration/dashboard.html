@@ -6,6 +6,12 @@
 
 
 <h2>Welcome to your Dashboard {{ owner }}</h2>
+
+{% for user, hours in total_hours.items %}
+{% if owner == user %}
+<h2>Total Hours Studied: {{ hours }}</h2>
+{% endif %}
+{% endfor %}
 {% for user in users %}
 {% if owner == user %}
 <table class="table table-light table-hover">
