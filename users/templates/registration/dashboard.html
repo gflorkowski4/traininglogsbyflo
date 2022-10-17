@@ -1,17 +1,14 @@
 {% extends "training_logs/base.html" %}
 
-{% block page_header %}<h1>Dashboard</h1>{% endblock page_header %}
+{% block page_header %}<h1>Welcome to your Dashboard {{ owner }}</h1>{% endblock page_header %}
 
 {% block content %}
-
-
-<h2>Welcome to your Dashboard {{ owner }}</h2>
-
 {% for user, hours in total_hours.items %}
 {% if owner == user %}
-<h2>Total Hours Studied: {{ hours }}</h2>
+<h2>Total Hours Studied for {{ current_month}}: {{ hours }}</h2>
 {% endif %}
 {% endfor %}
+
 {% for user in users %}
 {% if owner == user %}
 <table class="table table-light table-hover">
@@ -25,12 +22,14 @@
   
   <tbody>
     {% for entry in entries %}
+    {% if entry.month_published == current_month %}
     {% if user.id == entry.topic.owner.id %}
     <tr>
       <th scope="row">{{ entry.topic}}</th>
       <td>{{ entry.date_training_conducted }}</td>
       <td>{{ entry.hours }}</td>
     </tr>
+    {% endif %}
     {% endif %}
     {% endfor %}
   </tbody>

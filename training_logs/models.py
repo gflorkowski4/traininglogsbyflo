@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here 
 class Topic(models.Model):
@@ -25,3 +26,10 @@ class Entry(models.Model):
     def __str__(self):
         """Return a string representation"""
         return f'{self.text[:50]}...'
+
+    def month_published(self):
+        """Used to sort the entries by month for record purposes"""
+        return self.date_training_conducted.strftime('%B')
+
+    
+        

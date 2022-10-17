@@ -1,0 +1,63 @@
+{% extends "training_logs/base.html" %}
+
+{% block page_header %}<h1>Welcome to your Admin Dashboard {{ owner }}</h1>{% endblock page_header %}
+
+{% block content %}
+</br>
+<h2>The following Individuals have not completed the required hours</h2>
+</br>
+<table class="table table-light table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Training Hours</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    {% for user, hours in total_hours.items %}
+    {% if hours < 12 %}
+      <tr>
+        <th scope="row">{{ user }}</th>
+        <td>{{ hours }}</td>
+      </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+
+ <h1>Monthly Stats:</h1>
+ <table class="table table-light table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Training Hours</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    {% for user, hours in total_hours.items %}
+      <tr>
+        <th scope="row">{{ user }}</th>
+        <td>{{ hours }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+<h1>Profiles:</h1>
+
+{% for user, hours in total_hours.items %}
+
+<div class="card ">
+    <div class="card-body">
+      <h5 class="card-title text-dark">{{ user }}</h5>
+      <p class="card-text text-dark">Hours: {{ hours }}</p>
+      <a href="#" class="btn btn-primary">Details</a>
+    </div>
+  </div>
+</br>
+
+{% endfor %}
+
+{% endblock content %}

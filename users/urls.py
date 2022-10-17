@@ -10,5 +10,6 @@ urlpatterns = [
     # Path for a registration form
     path('register/', views.register, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
-
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    
 ]

@@ -3,6 +3,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from training_logs.models import Entry, Topic
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+
+from datetime import datetime
 
 # Create your views here for Users app
 def register(request):
@@ -23,8 +27,10 @@ def register(request):
     context = {'form':form}
     return render(request, 'registration/register.html', context)
 
+@login_required
 def dashboard(request):
     """Dashboard to present data"""
+    current_month = datetime.now().strftime('%B')
     owner = request.user
     entries = Entry.objects.all()
     topics = Topic.objects.all()
@@ -34,8 +40,9 @@ def dashboard(request):
     for user in users:
         hours_total = 0
         for entry in entries:
-            if user == entry.topic.owner:
-                hours_total += entry.hours
+            if entry.month_published() == current_month:
+                if user == entry.topic.owner:
+                    hours_total += entry.hours
         total_hours[user] = hours_total
 
 
@@ -44,5 +51,34 @@ def dashboard(request):
     'topics':topics, 
     'users':users,
     'owner':owner,
-    'total_hours':total_hours})
+    'total_hours':total_hours,
+    'current_month':current_month})
+
+@login_required
+def admin_dashboard(request):
+    if request.user.is_superuser:
+        current_month = datetime.now().strftime('%B')
+        owner = request.user
+        entries = Entry.objects.all()
+        topics = Topic.objects.all()
+        users = User.objects.all()
+        total_hours = {}
+
+        for user in users:
+            hours_total = 0
+            for entry in entries:
+                if entry.month_published() == current_month:
+                    if user == entry.topic.owner:
+                        hours_total += entry.hours
+            total_hours[user] = hours_total
+
+        return render(request, 'registration/admin_dashboard.html', 
+        {'entries':entries, 
+        'topics':topics, 
+        'users':users,
+        'owner':owner,
+        'total_hours':total_hours,
+        'current_month':current_month})
+    else:
+        raise Http404
     
