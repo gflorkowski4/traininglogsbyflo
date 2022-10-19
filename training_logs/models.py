@@ -15,6 +15,7 @@ class Topic(models.Model):
 class Entry(models.Model):
     """Something Learned about the topic."""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    method_of_training = models.CharField(max_length=200)
     hours = models.IntegerField()
     date_training_conducted = models.DateField()
     text = models.TextField()

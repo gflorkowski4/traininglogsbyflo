@@ -8,9 +8,16 @@ class TopicForm(forms.ModelForm):
         fields = ['text']
         labels = {'text':''}
 
+methods = [
+    ('TSE','TSE'),
+    ('Remote','Remote'),
+    ('In-Flight','In Flight'),
+    ('Class','Class')
+]
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['hours','date_training_conducted','text']
-        labels = {'text':'Training Summary','hours':'Hours','date_training_conducted':'Date of Training (yyyy-mm-dd)'}
-        widgets = {'text':forms.Textarea(attrs={'cols':80})}
+        fields = ['method_of_training','hours','date_training_conducted','text']
+        labels = {'Method of Training':'method_of_training','text':'Training Summary','hours':'Hours','date_training_conducted':'Date of Training (yyyy-mm-dd)'}
+        widgets = {'text':forms.Textarea(attrs={'cols':80}),
+                'method_of_training':forms.Select(choices=methods)}

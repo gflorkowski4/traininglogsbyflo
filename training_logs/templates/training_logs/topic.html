@@ -11,7 +11,7 @@
 {% for entry in entries %} 
     <div class="card text-black mb-3">
         <div class="card-body">
-        <h5 class="card-title">{{ entry.date_added|date:'M d, Y H:i ' }}</h5>
+        <h5 class="card-title">{{ entry.method_of_training }}|{{ entry.date_added|date:'M d, Y H:i ' }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Date Training Conducted: {{ entry.date_training_conducted}}| Hours: {{ entry.hours }} </h6>
         <p class="card-text">{{ entry.text| linebreaks }}</p>
         <a class="btn btn-primary" href="{% url 'training_logs:edit_entry' entry.id %}" role="button">Edit Entry</a>
