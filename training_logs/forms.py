@@ -11,7 +11,7 @@ class TopicForm(forms.ModelForm):
 methods = [
     ('TSE','TSE'),
     ('Remote','Remote'),
-    ('In-Flight','In Flight'),
+    ('In Flight','In Flight'),
     ('Class','Class')
 ]
 class EntryForm(forms.ModelForm):

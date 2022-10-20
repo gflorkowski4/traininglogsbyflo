@@ -45,19 +45,24 @@
     </tbody>
   </table>
 
-<h1>Profiles:</h1>
-
-{% for user, hours in total_hours.items %}
-
-<div class="card ">
-    <div class="card-body">
-      <h5 class="card-title text-dark">{{ user }}</h5>
-      <p class="card-text text-dark">Hours: {{ hours }}</p>
-      <a href="#" class="btn btn-primary">Details</a>
-    </div>
-  </div>
-</br>
-
-{% endfor %}
+<h1>{{ current_month }} Detailed Statistics:</h1>
+<table class="table table-light table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Method of Training</th>
+        <th scope="col">Training Hours</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    {% for method, hours in training_method_hours.items %}
+      <tr>
+        <th scope="row">{{ method }}</th>
+        <td>{{ hours }}</td>
+    {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+<h3>Quarterly statistics (total hours, percent completed):</h3>
 
 {% endblock content %}

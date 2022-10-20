@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from training_logs.models import Entry, Topic
@@ -9,10 +9,12 @@ from django.http import Http404
 from datetime import datetime
 
 # Create your views here for Users app
+
+
 def register(request):
     """Register a new user."""
     if request.method != 'POST':
-        #Display Blank Registration Form
+        # Display Blank Registration Form
         form = UserCreationForm()
     else:
         # Process completed form
@@ -23,9 +25,10 @@ def register(request):
             # Log-in the user and redirect to home page
             login(request, new_user)
             return redirect('training_logs:index')
-    # display a blank or invalid form 
-    context = {'form':form}
+    # display a blank or invalid form
+    context = {'form': form}
     return render(request, 'registration/register.html', context)
+
 
 @login_required
 def dashboard(request):
@@ -45,14 +48,14 @@ def dashboard(request):
                     hours_total += entry.hours
         total_hours[user] = hours_total
 
+    return render(request, 'registration/dashboard.html',
+                  {'entries': entries,
+                   'topics': topics,
+                   'users': users,
+                   'owner': owner,
+                   'total_hours': total_hours,
+                   'current_month': current_month})
 
-    return render(request, 'registration/dashboard.html', 
-    {'entries':entries, 
-    'topics':topics, 
-    'users':users,
-    'owner':owner,
-    'total_hours':total_hours,
-    'current_month':current_month})
 
 @login_required
 def admin_dashboard(request):
@@ -63,6 +66,7 @@ def admin_dashboard(request):
         topics = Topic.objects.all()
         users = User.objects.all()
         total_hours = {}
+        training_method_hours = {}
 
         for user in users:
             hours_total = 0
@@ -72,13 +76,23 @@ def admin_dashboard(request):
                         hours_total += entry.hours
             total_hours[user] = hours_total
 
-        return render(request, 'registration/admin_dashboard.html', 
-        {'entries':entries, 
-        'topics':topics, 
-        'users':users,
-        'owner':owner,
-        'total_hours':total_hours,
-        'current_month':current_month})
+
+        for method in ['TSE', 'Remote','Class','In Flight']:
+            method_hours = 0
+            for entry in entries:
+                if entry.month_published() == current_month:
+                    if entry.method_of_training == method:
+                        method_hours += entry.hours
+            training_method_hours[method] = method_hours
+                
+
+        return render(request, 'registration/admin_dashboard.html',
+                      {'entries': entries,
+                       'topics': topics,
+                       'users': users,
+                       'owner': owner,
+                       'total_hours': total_hours,
+                       'training_method_hours': training_method_hours,
+                       'current_month': current_month})
     else:
         raise Http404
-    
