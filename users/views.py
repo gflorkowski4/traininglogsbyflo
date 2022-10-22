@@ -5,6 +5,7 @@ from training_logs.models import Entry, Topic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from .forms import SignUpForm
 
 from datetime import datetime
 
@@ -15,10 +16,10 @@ def register(request):
     """Register a new user."""
     if request.method != 'POST':
         # Display Blank Registration Form
-        form = UserCreationForm()
+        form = SignUpForm()
     else:
         # Process completed form
-        form = UserCreationForm(data=request.POST)
+        form = SignUpForm(data=request.POST)
 
         if form.is_valid():
             new_user = form.save()

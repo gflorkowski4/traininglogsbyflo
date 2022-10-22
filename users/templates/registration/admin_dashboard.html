@@ -18,7 +18,7 @@
     {% for user, hours in total_hours.items %}
     {% if hours < 12 %}
       <tr>
-        <th scope="row">{{ user }}</th>
+        <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
         <td>{{ hours }}</td>
       </tr>
     {% endif %}
@@ -38,7 +38,7 @@
     <tbody>
     {% for user, hours in total_hours.items %}
       <tr>
-        <th scope="row">{{ user }}</th>
+        <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
         <td>{{ hours }}</td>
       </tr>
     {% endfor %}

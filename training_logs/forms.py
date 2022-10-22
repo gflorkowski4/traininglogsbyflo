@@ -12,7 +12,8 @@ methods = [
     ('TSE','TSE'),
     ('Remote','Remote'),
     ('In Flight','In Flight'),
-    ('Class','Class')
+    ('Class','Class'),
+    ('Self Study','Self Study'),
 ]
 class EntryForm(forms.ModelForm):
     class Meta:

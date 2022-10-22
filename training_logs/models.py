@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 # Create your models here 
+class Profile(models.Model):
+    """Custom Profile for app"""
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    role = models.CharField(max_length=20)
+
+    def __str__(self):
+        return str(self.user)
+
+
+
+
 class Topic(models.Model):
     """A topic that the user is learning about."""
     text = models.CharField(max_length=200)
