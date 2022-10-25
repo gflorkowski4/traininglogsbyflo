@@ -3,6 +3,7 @@
 {% block page_header %}<h1>Welcome to your Admin Dashboard {{ owner }}</h1>{% endblock page_header %}
 
 {% block content %}
+<a class="nav-link" href="{% url 'users:search_results' %}">Search Dates</a>
 </br>
 <h2>The following Individuals have not completed the required hours</h2>
 </br>
@@ -63,6 +64,4 @@
       </tr>
     </tbody>
   </table>
-<h3>Quarterly statistics (total hours, percent completed):</h3>
-
 {% endblock content %}

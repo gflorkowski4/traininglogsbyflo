@@ -1,20 +1,25 @@
 {% extends "training_logs/base.html" %}
 
-{% block page_header %}<h1>Welcome to your Dashboard {{ owner.first_name }}</h1>{% endblock page_header %}
+{% block page_header %}<h1>Welcome to your training profile {{ owner.first_name }}</h1>
+<a class="nav-link" href="{% url 'users:edit_profile' %}">Edit Profile</a>
+{% endblock page_header %}
 
 {% block content %}
 {% for user, hours in total_hours.items %}
 {% if owner == user %}
-<h2>Total Hours Studied for {{ current_month}}: {{ hours }}</h2>
+<h3>Username: {{owner.username}} | {{ current_month}} Training Hours: {{ hours }} </h3>
+<h3>First Name: {{owner.first_name}} | Last Name: {{owner.last_name}}</h3>
 {% endif %}
 {% endfor %}
-
+</br>
+<h2>{{current_month}} Entries:</h2>
 {% for user in users %}
 {% if owner == user %}
 <table class="table table-light table-hover">
   <thead>
     <tr>
       <th scope="col">Topic</th>
+      <th scope="col">Method of Training</th>
       <th scope="col">Date Training Conducted</th>
       <th scope="col">Training Hours</th>
     </tr>
@@ -26,6 +31,7 @@
     {% if user.id == entry.topic.owner.id %}
     <tr>
       <th scope="row">{{ entry.topic}}</th>
+      <td>{{ entry.method_of_training }}</td>
       <td>{{ entry.date_training_conducted }}</td>
       <td>{{ entry.hours }}</td>
     </tr>
