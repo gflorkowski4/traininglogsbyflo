@@ -3,7 +3,9 @@
 {% block page_header %}<h1>Welcome to your Admin Dashboard {{ owner }}</h1>{% endblock page_header %}
 
 {% block content %}
-<a class="nav-link" href="{% url 'users:search_results' %}">Search Dates</a>
+
+<a href="{% url 'users:search_results' %}" class="btn btn-primary">Search Dates</a>
+
 </br>
 <div class="container">
   <div class="row">
