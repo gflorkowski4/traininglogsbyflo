@@ -1,14 +1,28 @@
 {% extends "training_logs/base.html" %}
 
 {% block page_header %}<h1>Welcome to your training profile {{ owner.first_name }}</h1>
-<a class="nav-link" href="{% url 'users:edit_profile' %}">Edit Profile</a>
 {% endblock page_header %}
 
 {% block content %}
 {% for user, hours in total_hours.items %}
 {% if owner == user %}
-<h3>Username: {{owner.username}} | {{ current_month}} Training Hours: {{ hours }} </h3>
-<h3>First Name: {{owner.first_name}} | Last Name: {{owner.last_name}}</h3>
+<div class="card w-50">
+  <div class="card-header text-dark">
+    User Profile
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Username: {{owner.username}} </li>
+      <li class="list-group-item">First Name: {{owner.first_name}}</li>
+      <li class="list-group-item">Last Name: {{owner.last_name}}</li>
+      <li class="list-group-item">{{ current_month}} Training Hours: {{ hours }}</li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+  </div>
+</div>
+</div>
 {% endif %}
 {% endfor %}
 </br>
@@ -24,7 +38,7 @@
       <th scope="col">Training Hours</th>
     </tr>
   </thead>
-  
+
   <tbody>
     {% for entry in entries %}
     {% if entry.month_published == current_month %}
