@@ -14,6 +14,9 @@ methods = [
     ('In Flight','In Flight'),
     ('Class','Class'),
     ('Self Study','Self Study'),
+    ('DSE', 'DSE'),
+    ('CSPT','CSPT'),
+    ('Global','Global'),
 ]
 class EntryForm(forms.ModelForm):
     class Meta:

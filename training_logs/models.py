@@ -21,7 +21,7 @@ class Topic(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         """Return a string representation of the model"""
-        return self.text
+        return f' {self.text} created by: {self.owner}'
 
 class Entry(models.Model):
     """Something Learned about the topic."""

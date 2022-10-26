@@ -10,8 +10,8 @@
 {% endif %}
 <center>
 
-<div class="d-flex justify-content-center w-25 bg-gradient">
-    <form method="post" action="{% url 'users:login' %}" class="form w-50">
+<div class="d-flex justify-content-center w-50 bg-gradient">
+    <form method="post" action="{% url 'users:login' %}" class="form w-75">
         {% csrf_token %}
         {% bootstrap_form form %}
         </br>

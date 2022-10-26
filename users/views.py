@@ -12,7 +12,6 @@ from datetime import datetime
 
 # Create your views here for Users app
 
-
 def register(request):
     """Register a new user."""
     if request.method != 'POST':
@@ -80,7 +79,7 @@ def admin_dashboard(request):
                         hours_total += entry.hours
             total_hours[user] = hours_total
 
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study']:
+        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global']:
             method_hours = 0
             for entry in entries:
                 if entry.month_published() == current_month:
@@ -121,7 +120,7 @@ def edit_profile(request):
             'form_2':form_2}
         return render(request, 'registration/edit_profile.html', args)
 
-# SEARCH RESULTS VIEW ===============================================================================
+# SEARCH RESULTS
 @login_required
 def search_results(request):
     training_method_hours = {}
@@ -139,7 +138,7 @@ def search_results(request):
             date_training_conducted__range=(start_date, end_date)).order_by('-date_training_conducted')
 
         # Query for Each Training Method Totals
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study']:
+        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global']:
             method_hours = 0
             for entry in data:
                 if entry.method_of_training == method:
@@ -168,7 +167,6 @@ def search_results(request):
         data = Entry.objects.all()
         return render(request, 'registration/search_results.html', {'data': data})
 
-# PASSWORD CHANGE FORM ========================================================================================
 @login_required
 def password_change(request):
     return render(request, 'registration/password_changed.html',{})
