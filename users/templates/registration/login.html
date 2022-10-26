@@ -1,19 +1,25 @@
 {% extends "training_logs/base.html" %}
 {% load bootstrap4 %}
 
-{% block page_header %}<h1>Login</h1>{% endblock page_header %}
+{% block page_header %}<center><h1>Login</h1><hr/></center>{% endblock page_header %}
 {% block content %}
-    {% if form.errors %}
-        <p>Your Username and Password did not match. Please Try Again.</p>
-    {% endif %}
-    <form method="post" action="{% url 'users:login' %}" class="form">
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    Your Username and Password did not match. Please Try Again.
+  </div>
+{% endif %}
+<center>
+
+<div class="d-flex justify-content-center w-25 bg-gradient">
+    <form method="post" action="{% url 'users:login' %}" class="form w-50">
         {% csrf_token %}
         {% bootstrap_form form %}
-    </br>
+        </br>
         {% buttons %}
-            <button name="submit" class="btn btn-primary">Log-In</button>
+        <button name="submit" class="btn btn-primary">Log-In</button>
         {% endbuttons %}
-        <input type="hidden" name="next"
-        value="{% url 'training_logs:index' %}"/>
+        <input type="hidden" name="next" value="{% url 'training_logs:index' %}" />
     </form>
+</div>
+</center>
 {% endblock content %}
