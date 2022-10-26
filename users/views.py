@@ -6,7 +6,7 @@ from training_logs.models import Entry, Topic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from .forms import EditProfileForm, SignUpForm
+from .forms import EditUserForm, SignUpForm, EditProfileForm
 
 from datetime import datetime
 
@@ -100,21 +100,28 @@ def admin_dashboard(request):
     else:
         raise Http404
 
-
+# EDIT PROFILE =====================================================================================
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid:
-            form.save()
+        form = EditUserForm(request.POST or None, instance=request.user)
+        form_2 = EditProfileForm(request.POST or None, instance=request.user.profile)
+        if all([form.is_valid(),form_2.is_valid()]):
+            parent = form.save(commit=False)
+            parent.save()
+            child = form_2.save(commit=False)
+            child.User = parent
+            child.save()
             return redirect('users:dashboard')
     else:
-        form = EditProfileForm(instance=request.user)
+        form = EditUserForm(instance=request.user)
+        form_2 = EditProfileForm(instance=request.user)
         args = {
-            'form': form}
+            'form': form,
+            'form_2':form_2}
         return render(request, 'registration/edit_profile.html', args)
 
-
+# SEARCH RESULTS VIEW ===============================================================================
 @login_required
 def search_results(request):
     training_method_hours = {}
@@ -160,3 +167,8 @@ def search_results(request):
     else:
         data = Entry.objects.all()
         return render(request, 'registration/search_results.html', {'data': data})
+
+# PASSWORD CHANGE FORM ========================================================================================
+@login_required
+def password_change(request):
+    return render(request, 'registration/password_changed.html',{})

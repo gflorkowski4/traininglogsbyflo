@@ -3,9 +3,12 @@
 {% block page_header %}<h1>Edit Profile</h1>{% endblock page_header %}
 
 {% block content %}
-<form method="post" action="{% url 'users:edit_profile' %}" class="form text-dark w-50">
+<form method="post" action="{% url 'users:edit_profile' %}" class="form text-light w-50">
   {% csrf_token %}
+  {{form_2.as_p}}
   {% bootstrap_form form %}
+
+
 </br>
   {% buttons %}
       <button name="submit" class="btn btn-primary">Update Profile</button>

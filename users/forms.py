@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
+from training_logs.models import Profile
 from django import forms 
 
 class SignUpForm(UserCreationForm):
@@ -11,7 +12,12 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username','first_name','last_name','email','password1','password2')
 
-class EditProfileForm(UserChangeForm):
+class EditUserForm(UserChangeForm):
     class Meta:
         model = User
         fields =  ('username','first_name','last_name','email')
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['role']
