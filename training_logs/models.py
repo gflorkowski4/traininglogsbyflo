@@ -6,7 +6,7 @@ from datetime import datetime
 class Profile(models.Model):
     """Custom Profile for app"""
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20)
+    role = models.CharField(max_length=20, default='Green Team')
 
     def __str__(self):
         return str(self.user)

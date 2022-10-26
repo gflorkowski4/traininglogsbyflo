@@ -6,6 +6,7 @@ from training_logs.models import Entry, Topic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from training_logs.models import Profile
 from .forms import EditUserForm, SignUpForm, EditProfileForm
 
 from datetime import datetime
@@ -25,6 +26,7 @@ def register(request):
             new_user = form.save()
             # Log-in the user and redirect to home page
             login(request, new_user)
+            new_profile = Profile.objects.create(user=request.user)
             return redirect('training_logs:index')
     # display a blank or invalid form
     context = {'form': form}

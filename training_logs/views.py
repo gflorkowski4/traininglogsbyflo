@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
 from .models import Topic, Entry
+from training_logs.models import Profile
 from .forms import TopicForm, EntryForm
 
 # Create your views here.

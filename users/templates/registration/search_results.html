@@ -85,7 +85,7 @@
     {% for entry in data %}
       <tr>
         <th scope="row">{{ entry.topic.owner}}</th>
-        <td>{{ entry.topic }}</td>
+        <td>{{ entry.topic.text }}</td>
         <td>{{ entry.method_of_training }}</td>
         <td>{{ entry.date_training_conducted }}</td>
         <td>{{ entry.hours }}</td>

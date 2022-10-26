@@ -55,7 +55,7 @@
             {% if entry.month_published == current_month %}
             {% if user.id == entry.topic.owner.id %}
             <tr>
-              <th scope="row">{{ entry.topic}}</th>
+              <th scope="row">{{ entry.topic.text}}</th>
               <td>{{ entry.method_of_training }}</td>
               <td>{{ entry.date_training_conducted }}</td>
               <td>{{ entry.hours }}</td>
