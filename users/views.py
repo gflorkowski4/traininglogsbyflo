@@ -173,12 +173,12 @@ def search_results(request):
         return render(request, 'registration/search_results.html', {'data': data})
 
 @login_required
-#You need to make it so it pulls the
 def password_change(request):
     return render(request, 'registration/password_changed.html',{})
 
 
 def results_csv(request):
+    #find a way to pull the same information and pull the dates as well
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=results.csv'
     data = Entry.objects.all()
