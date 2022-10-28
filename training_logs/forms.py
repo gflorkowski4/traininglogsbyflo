@@ -17,6 +17,9 @@ methods = [
     ('DSE', 'DSE'),
     ('CSPT','CSPT'),
     ('Global','Global'),
+    ('CMCT','CMCT'),
+    ('DLPT','DLPT'),
+    ('OPI','OPI'),
 ]
 class EntryForm(forms.ModelForm):
     class Meta:

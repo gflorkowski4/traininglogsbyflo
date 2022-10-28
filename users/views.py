@@ -173,6 +173,7 @@ def search_results(request):
         return render(request, 'registration/search_results.html', {'data': data})
 
 @login_required
+#You need to make it so it pulls the
 def password_change(request):
     return render(request, 'registration/password_changed.html',{})
 
