@@ -27,7 +27,8 @@ class Entry(models.Model):
     """Something Learned about the topic."""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     method_of_training = models.CharField(max_length=200)
-    hours = models.IntegerField()
+    source = models.CharField(max_length=20)
+    hours = models.FloatField()
     date_training_conducted = models.DateField()
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
@@ -37,7 +38,7 @@ class Entry(models.Model):
     
     def __str__(self):
         """Return a string representation"""
-        return f'{self.text[:50]}...'
+        return f'{self.topic.text} | {self.topic.owner.first_name} {self.topic.owner.last_name} | {self.method_of_training} | {self.hours} hours'
 
     def month_published(self):
         """Used to sort the entries by month for record purposes"""

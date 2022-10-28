@@ -21,10 +21,15 @@ methods = [
     ('DLPT','DLPT'),
     ('OPI','OPI'),
 ]
+sources = [
+    ('Netflix','Netflix'),
+    ('YouTube','YouTube'),
+    ('News Site','News Site'),
+    ('Educational Site','Educational Site')
+]
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['method_of_training','hours','date_training_conducted','text']
-        labels = {'Method of Training':'method_of_training','text':'Training Summary','hours':'Hours','date_training_conducted':'Date of Training (yyyy-mm-dd)'}
-        widgets = {'text':forms.Textarea(attrs={'cols':80}),
-                'method_of_training':forms.Select(choices=methods)}
+        fields = ['method_of_training','hours','date_training_conducted','source']
+        labels = {'method_of_training':' ','hours':' ','date_training_conducted':' ','source':' '}
+        widgets = {'method_of_training':forms.Select(choices=methods),'source':forms.Select(choices=sources), 'date_training_conducted':forms.SelectDateWidget()}

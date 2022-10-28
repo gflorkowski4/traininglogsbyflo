@@ -2,14 +2,14 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-    <h1><a href="{% url 'training_logs:topic' topic.id %}">{{ topic }}</a></h1>
-    <p>Add a new entry:</p>
+    <h1><a href="{% url 'training_logs:topic' topic.id %}">{{ topic.text }}</a></h1>
 {% endblock page_header %}
 
 
 
 {% block content %}
-<form method="post" action="{% url 'training_logs:new_entry' topic.id %}" class="form text-dark">
+
+<form method="post" action="{% url 'training_logs:new_entry' topic.id %}" class="form text-dark w-50">
     {% csrf_token %}
     {% bootstrap_form form %}
 </br>
