@@ -31,5 +31,5 @@ class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
         fields = ['method_of_training','hours','date_training_conducted','source']
-        labels = {'method_of_training':' ','hours':' ','date_training_conducted':' ','source':' '}
+        labels = {'method_of_training':'Method of Training','hours':'Hours','date_training_conducted':'Date of Training (yyyy-mm-dd)','source':'Source'}
         widgets = {'method_of_training':forms.Select(choices=methods),'source':forms.Select(choices=sources), 'date_training_conducted':forms.SelectDateWidget()}
