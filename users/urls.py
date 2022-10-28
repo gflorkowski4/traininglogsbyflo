@@ -16,4 +16,5 @@ urlpatterns = [
     path('search_results/', views.search_results, name='search_results'),
     path('password/',auth_views.PasswordChangeView.as_view(template_name='registration/change_password.html'),name='change_password'),
     path('password_change_done', views.password_change, name='password_change'),
+    path('results_csv', views.results_csv, name='results_csv'),
 ]

@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.db.models.functions import Extract
@@ -5,10 +6,10 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from training_logs.models import Entry, Topic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from training_logs.models import Profile
 from .forms import EditUserForm, SignUpForm, EditProfileForm
-
+import csv
 from datetime import datetime
 
 # Create your views here for Users app
@@ -81,7 +82,7 @@ def admin_dashboard(request):
                         hours_total += entry.hours
             total_hours[user] = hours_total
 
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global']:
+        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
             method_hours = 0
             for entry in entries:
                 if entry.month_published() == current_month:
@@ -135,12 +136,12 @@ def search_results(request):
         end_date = request.POST.get('end_date')
         req_hours = int(request.POST.get('req_hours'))
 
-        # Now the data is the entries that are in between the selected dates.
+
         data = Entry.objects.filter(
             date_training_conducted__range=(start_date, end_date)).order_by('-date_training_conducted')
 
         # Query for Each Training Method Totals
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global']:
+        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
             method_hours = 0
             for entry in data:
                 if entry.method_of_training == method:
@@ -160,6 +161,8 @@ def search_results(request):
             if hours < req_hours:
                 bad_users[user] = hours
 
+        
+
         return render(request, 'registration/search_results.html', {'data': data, 
                                                                     'training_method_hours': training_method_hours,
                                                                     'total_hours':total_hours,
@@ -172,3 +175,26 @@ def search_results(request):
 @login_required
 def password_change(request):
     return render(request, 'registration/password_changed.html',{})
+
+
+def results_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=results.csv'
+    data = Entry.objects.all()
+
+    #CSV Writer 
+    writer = csv.writer(response)
+    # Model
+    data = Entry.objects.all()
+
+    writer.writerow(['Student Name','Role','Topic','Method of Training', 'Date Training Conducted', 'Training Hours'])
+
+    for entry in data:
+        writer.writerow([entry.topic.owner.first_name+' '+entry.topic.owner.last_name,entry.topic.owner.profile.role,entry.topic.text,
+        entry.method_of_training, entry.date_training_conducted, entry.hours])
+
+    return response
+
+
+
+    

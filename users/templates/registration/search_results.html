@@ -13,9 +13,10 @@
   </br>
   <h4>Required Hours: <input type="number" name="req_hours" /></h4>
   </br>
-  <input class='btn btn-primary' type="submit" value="Search" />
+  <h2><input class='btn btn-primary' type="submit" value="Search" /> <a href="{% url 'users:results_csv' %}" class="btn btn-primary">Get CSV</a> </h2>
 </form>
 </br>
+
 <hr />
 <h1>Summary of Training Methods:</h1>
 <table class="table table-light table-hover">
