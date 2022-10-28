@@ -4,18 +4,17 @@ from training_logs.models import Profile
 from django import forms 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField()
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
 
     class Meta:
         model = User
-        fields = ('username','first_name','last_name','email','password1','password2')
+        fields = ('username','first_name','last_name','password1','password2')
 
 class EditUserForm(UserChangeForm):
     class Meta:
         model = User
-        fields =  ('username','first_name','last_name','email')
+        fields =  ('username','first_name','last_name',)
 
 class EditProfileForm(forms.ModelForm):
     class Meta:
