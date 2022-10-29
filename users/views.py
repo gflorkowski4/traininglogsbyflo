@@ -92,15 +92,6 @@ def admin_dashboard(request):
                         method_hours += entry.hours
             training_method_hours[method] = method_hours
 
-        
-
-        x_data = [0,1,2,3]
-        y_data = [x**2 for x in x_data]
-        plt_div = plot([Scatter(x=x_data, y=y_data,
-                        mode='lines', name='test',
-                        opacity=0.8, marker_color='green')],
-                        output_type='div')
-
 
         return render(request, 'registration/admin_dashboard.html',
                       {'entries': entries,
@@ -109,8 +100,7 @@ def admin_dashboard(request):
                        'owner': owner,
                        'total_hours': total_hours,
                        'training_method_hours': training_method_hours,
-                       'current_month': current_month,
-                       'plt_div':plt_div,})
+                       'current_month': current_month})
     else:
         raise Http404
 
