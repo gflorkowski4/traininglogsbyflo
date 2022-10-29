@@ -10,9 +10,6 @@ from django.http import Http404, HttpResponse
 from training_logs.models import Profile
 from .forms import EditUserForm, SignUpForm, EditProfileForm
 import csv
-from plotly.offline import plot
-from plotly.graph_objs import Scatter
-import plotly.graph_objs as go
 from datetime import datetime
 
 # Create your views here for Users app
