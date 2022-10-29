@@ -4,33 +4,63 @@
 {% endblock page_header %}
 
 {% block content %}
-{% for user, hours in total_hours.items %}
-{% if owner == user %}
-<div class="card w-50">
-  <div class="card-header text-dark">
-    User Profile
+<div class="row">
+  <div class="col">
+    {% for user, hours in total_hours.items %}
+    {% if owner == user %}
+    <div class="card w-75">
+      <div class="card-header text-dark">
+        User Profile
+      </div>
+    </br>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Username: {{owner.username}} </li>
+        </br>
+          <li class="list-group-item">First Name: {{owner.first_name}}</li>
+        </br>
+          <li class="list-group-item">Last Name: {{owner.last_name}}</li>
+        </br>
+          <li class="list-group-item">Role: {{owner.profile.role}}</li>
+        </br>
+          <li class="list-group-item">{{ current_month}} Training Hours: {{hours}}
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Username: {{owner.username}} </li>
-      <li class="list-group-item">First Name: {{owner.first_name}}</li>
-      <li class="list-group-item">Last Name: {{owner.last_name}}</li>
-      <li class="list-group-item">Role: {{owner.profile.role}}</li>
-      <li class="list-group-item">{{ current_month}} Training Hours: {{hours}}
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+  {% endif %}
+  {% endfor %}
+  <div class="col">
+    <div class="card mb-4">
+      <table class="table table-light table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Method of Training</th>
+            <th scope="col">Training Hours</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          {% for method, hours in training_method_hours.items %}
+          <tr>
+            <th scope="row">{{ method }}</th>
+            <td>{{ hours }}</td>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-</div>
-{% endif %}
-{% endfor %}
-</br>
+
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingOne">
@@ -74,4 +104,5 @@
       </div>
     </div>
   </div>
-  {% endblock content %}
+</div>
+{% endblock content %}

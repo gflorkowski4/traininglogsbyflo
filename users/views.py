@@ -41,10 +41,19 @@ def dashboard(request):
     owner = request.user
     entries = Entry.objects.all().order_by('-date_training_conducted')
     topics = Topic.objects.all()
+    training_method_hours = {}
     users = User.objects.all()
     user_count = User.objects.count()
     total_hours = {}
     
+    for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
+        method_hours = 0
+        for entry in entries:
+                if entry.topic.owner == request.user:
+                    if entry.month_published() == current_month:
+                        if entry.method_of_training == method:
+                            method_hours += entry.hours
+        training_method_hours[method] = method_hours
 
     for user in users:
         hours_total = 0
@@ -61,7 +70,8 @@ def dashboard(request):
                    'owner': owner,
                    'total_hours': total_hours,
                    'current_month': current_month,
-                   'style_percent':style_percent})
+                   'style_percent':style_percent,
+                   'training_method_hours':training_method_hours,})
 
 
 @login_required
