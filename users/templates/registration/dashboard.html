@@ -16,7 +16,11 @@
       <li class="list-group-item">First Name: {{owner.first_name}}</li>
       <li class="list-group-item">Last Name: {{owner.last_name}}</li>
       <li class="list-group-item">Role: {{owner.profile.role}}</li>
-      <li class="list-group-item">{{ current_month}} Training Hours: {{ hours }}</li>
+      <li class="list-group-item">{{ current_month}} Training Hours: {{hours}}
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%"></div>
+        </div>
+      </li>
     </ul>
   </div>
   <div class="card-body">

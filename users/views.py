@@ -10,6 +10,9 @@ from django.http import Http404, HttpResponse
 from training_logs.models import Profile
 from .forms import EditUserForm, SignUpForm, EditProfileForm
 import csv
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
+import plotly.graph_objs as go
 from datetime import datetime
 
 # Create your views here for Users app
@@ -44,6 +47,7 @@ def dashboard(request):
     users = User.objects.all()
     user_count = User.objects.count()
     total_hours = {}
+    
 
     for user in users:
         hours_total = 0
@@ -52,14 +56,15 @@ def dashboard(request):
                 if user == entry.topic.owner:
                     hours_total += entry.hours
         total_hours[user] = hours_total
-
+    style_percent = total_hours[request.user]/12*100
     return render(request, 'registration/dashboard.html',
                   {'entries': entries,
                    'topics': topics,
                    'users': users,
                    'owner': owner,
                    'total_hours': total_hours,
-                   'current_month': current_month})
+                   'current_month': current_month,
+                   'style_percent':style_percent})
 
 
 @login_required
@@ -90,6 +95,16 @@ def admin_dashboard(request):
                         method_hours += entry.hours
             training_method_hours[method] = method_hours
 
+        
+
+        x_data = [0,1,2,3]
+        y_data = [x**2 for x in x_data]
+        plt_div = plot([Scatter(x=x_data, y=y_data,
+                        mode='lines', name='test',
+                        opacity=0.8, marker_color='green')],
+                        output_type='div')
+
+
         return render(request, 'registration/admin_dashboard.html',
                       {'entries': entries,
                        'topics': topics,
@@ -98,7 +113,7 @@ def admin_dashboard(request):
                        'total_hours': total_hours,
                        'training_method_hours': training_method_hours,
                        'current_month': current_month,
-                       })
+                       'plt_div':plt_div,})
     else:
         raise Http404
 
