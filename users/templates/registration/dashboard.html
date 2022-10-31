@@ -15,15 +15,16 @@
     </br>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Username: {{owner.username}} </li>
+          <li class="list-group-item"><span class="badge bg-primary">Username: </span> {{owner.username}} </li>
         </br>
-          <li class="list-group-item">First Name: {{owner.first_name}}</li>
+          <li class="list-group-item"><span class="badge bg-primary">First Name:</span> {{owner.first_name}}</li>
         </br>
-          <li class="list-group-item">Last Name: {{owner.last_name}}</li>
+          <li class="list-group-item"><span class="badge bg-primary">Last Name:</span> {{owner.last_name}}</li>
         </br>
-          <li class="list-group-item">Role: {{owner.profile.role}}</li>
+          <li class="list-group-item"><span class="badge bg-primary">Role:</span> {{owner.profile.role}}</li>
         </br>
-          <li class="list-group-item">{{ current_month}} Training Hours: {{hours}}
+          <li class="list-group-item"><span class="badge bg-primary">{{ current_month}} Training Hours:</span> {{hours}}
+         
             <div class="progress">
               <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
               </div>
@@ -31,8 +32,10 @@
           </li>
         </ul>
       </div>
+    </br>
       <div class="card-body">
         <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+      
       </div>
     </div>
   </div>
