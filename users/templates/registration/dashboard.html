@@ -16,24 +16,24 @@
       </br>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><span class="badge bg-primary ">Username: </span> {{owner.username}} </li>
+          <li class="list-group-item"><span class="badge bg-secondary ">Username: </span> {{owner.username}} </li>
           </br>
-          <li class="list-group-item"><span class="badge bg-primary">First Name:</span> {{owner.first_name}}</li>
+          <li class="list-group-item"><span class="badge bg-secondary">First Name:</span> {{owner.first_name}}</li>
           </br>
-          <li class="list-group-item"><span class="badge bg-primary">Last Name:</span> {{owner.last_name}}</li>
+          <li class="list-group-item"><span class="badge bg-secondary">Last Name:</span> {{owner.last_name}}</li>
           </br>
-          <li class="list-group-item"><span class="badge bg-primary">Role:</span> {{owner.profile.role}}</li>
+          <li class="list-group-item"><span class="badge bg-secondary">Role:</span> {{owner.profile.role}}</li>
           </br>
-          <li class="list-group-item"><span class="badge bg-primary">{{ current_month}} Training Hours:</span> {{hours}}
+          <li class="list-group-item"><span class="badge bg-secondary">{{ current_month}} Training Hours:</span> {{hours}}
           </li>
           <div class="progress" style="height:30px">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
+            <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
             </div>
           </div>
         </ul>
       </div>
       <div class="card-body">
-        <a href="{% url 'users:edit_profile' %}" class="btn btn-primary btn-lg">Edit Profile</a>
+        <a href="{% url 'users:edit_profile' %}" class="btn btn-outline-dark btn-lg px-5">Edit Profile</a>
       </div>
     </div>
   </div>

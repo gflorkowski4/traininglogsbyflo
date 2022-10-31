@@ -13,8 +13,8 @@
   </br>
   <h4>Required Hours: <input class="form-control w-50" type="number" name="req_hours" /></h4>
   </br>
-  <h2><input class='btn btn-primary btn-lg' type="submit" value="Search" /> <a href="{% url 'users:results_csv' %}"
-      class="btn btn-primary btn-lg">Get CSV</a> </h2>
+  <h2><input class="btn btn-outline-light btn-lg px-5" type="submit" value="Search" /> <a href="{% url 'users:results_csv' %}"
+      class="btn btn-outline-light btn-lg px-5">Get CSV</a> </h2>
 </form>
 </br>
 
@@ -23,16 +23,16 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="tab" href="#home">Summary of Training Methods</a>
+      <a class="nav-link active text-secondary"  data-bs-toggle="tab" href="#home">Summary of Training Methods</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#menu1">Hours Not Complete</a>
+      <a class="nav-link text-secondary" data-bs-toggle="tab" href="#menu1">Hours Not Complete</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#menu2">Individual Stats</a>
+      <a class="nav-link text-secondary" data-bs-toggle="tab" href="#menu2">Individual Stats</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#menu3">Entry Details</a>
+      <a class="nav-link text-secondary" data-bs-toggle="tab" href="#menu3">Entry Details</a>
     </li>
   </ul>
 
@@ -115,7 +115,7 @@
         <tbody>
           {% for entry in data %}
           <tr>
-            <th scope="row">{{ entry.topic.owner}}</th>
+            <th scope="row">{{ entry.topic.owner.first_name}} {{ entry.topic.owner.last_name}}</th>
             <td>{{ entry.topic.text }}</td>
             <td>{{ entry.method_of_training }}</td>
             <td>{{ entry.date_training_conducted }}</td>

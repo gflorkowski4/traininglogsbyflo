@@ -1,11 +1,10 @@
 {% extends "training_logs/base.html" %}
 
-{% block page_header %}<h1>{{ topic.text }}<hr/></h1>{% endblock page_header %}
+{% block page_header %}<h1>{{ topic.text }} Entries:<hr/></h1>{% endblock page_header %}
 
 {% block content %}
-<h2>Entries:</h2>
 
-<a class="btn btn-primary" href="{% url 'training_logs:new_entry' topic.id %}" role="button">Add New Training Entry</a>
+<a class="btn btn-outline-light btn-lg px-5" href="{% url 'training_logs:new_entry' topic.id %}" role="button">Add New Training Entry</a>
 </br>
 </br>
 <div class="container">
@@ -22,7 +21,7 @@
                         {{entry.date_training_conducted}}| Hours: {{ entry.hours }} </h6>
                     <!--Text-->
                     <p class="card-text">{{ entry.text| linebreaks }}</p>
-                    <a class="btn btn-primary" href="{% url 'training_logs:edit_entry' entry.id %}" role="button">Edit Entry</a>
+                    <a class="btn btn-outline-dark px-5" href="{% url 'training_logs:edit_entry' entry.id %}" role="button">Edit Entry</a>
                 </div>
             </div>
         </div>
