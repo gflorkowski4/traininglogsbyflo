@@ -1,24 +1,36 @@
 {% extends "training_logs/base.html" %}
 {% load bootstrap4 %}
-{% block page_header %}<center>
-  <h1>Register</h1>
-  <hr />
-</center>{% endblock page_header %}
+{% block page_header %}{% endblock page_header %}
 
 {% block content %}
 
-<center>
+<section class="vh-110 bg-gradient">
+  <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                  <div class="card-body p-5 text-center">
 
-  <div class="d-flex justify-content-center w-50 bg-gradient text-light">
-    <form method="post" action="{% url 'users:register' %}" class="form text-light w-50">
-      {% csrf_token %}
-      {% bootstrap_form form %}
-      </br>
-      {% buttons %}
-      <button name="submit" class="btn btn-primary">Register</button>
-      {% endbuttons %}
-      <input type="hidden" name="next" value="{% url 'training_logs:index' %}" />
-    </form>
+                      <div class="mb-md-5 mt-md-4 pb-5">
+
+                          <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                          <hr/>
+
+                          <form method="post" action="{% url 'users:register' %}" class="form text-light">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            </br>
+                            {% buttons %}
+                            <button name="submit" class="btn btn-outline-light btn-lg px-5">Register</button>
+                            {% endbuttons %}
+                            <input type="hidden" name="next" value="{% url 'training_logs:index' %}" />
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-</center>
+</section>
+
 {% endblock content %}

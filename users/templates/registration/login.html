@@ -1,25 +1,39 @@
 {% extends "training_logs/base.html" %}
 {% load bootstrap4 %}
 
-{% block page_header %}<center><h1>Login</h1><hr/></center>{% endblock page_header %}
+{% block page_header %}{% endblock page_header %}
 {% block content %}
 {% if form.errors %}
 <div class="alert alert-danger" role="alert">
     Your Username and Password did not match. Please Try Again.
-  </div>
-{% endif %}
-<center>
-
-<div class="d-flex justify-content-center w-50 bg-gradient">
-    <form method="post" action="{% url 'users:login' %}" class="form w-75">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        </br>
-        {% buttons %}
-        <button name="submit" class="btn btn-primary">Log-In</button>
-        {% endbuttons %}
-        <input type="hidden" name="next" value="{% url 'training_logs:index' %}" />
-    </form>
 </div>
-</center>
+{% endif %}
+<section class="vh-100 bg-gradient">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                            <hr/>
+                            <form method="post" action="{% url 'users:login' %}" class="form">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                </br>
+                                {% buttons %}
+                                <button name="submit" class="btn btn-outline-light btn-lg px-5">Log-In</button>
+                                {% endbuttons %}
+                                <input type="hidden" name="next" value="{% url 'training_logs:index' %}" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
