@@ -24,18 +24,17 @@
           <li class="list-group-item"><span class="badge bg-primary">Role:</span> {{owner.profile.role}}</li>
         </br>
           <li class="list-group-item"><span class="badge bg-primary">{{ current_month}} Training Hours:</span> {{hours}}
-         
+          </li>
             <div class="progress">
               <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
               </div>
             </div>
-          </li>
+          
         </ul>
       </div>
     </br>
       <div class="card-body">
         <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
-      
       </div>
     </div>
   </div>
