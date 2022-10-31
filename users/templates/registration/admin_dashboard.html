@@ -7,78 +7,92 @@
 <a href="{% url 'users:search_results' %}" class="btn btn-primary">Search Dates</a>
 </br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Hours not completed:</h2>
-      <div class="card mb-4">
-        <table class="table table-light table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Training Hours</th>
-              <th scope="col">Role</th>
-            </tr>
-          </thead>
-        
-          <tbody>
-            {% for user, hours in total_hours.items %}
-            {% if hours < 12 %} <tr>
-              <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
-              <td>{{ hours }}</td>
-              <td>{{ user.profile.role }}</td>
-              </tr>
-              {% endif %}
-              {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <h2>Monthly Stats:</h2>
-      <div class="card mb-4">
-        <table class="table table-light table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Training Hours</th>
-            </tr>
-          </thead>
-        
-          <tbody>
-            {% for user, hours in total_hours.items %}
-            <tr>
-              <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
-              <td>{{ hours }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        
-      </div>
-    </div>
-    <div class="col-md-4">
-      <h2>Training Method Statistics:</h2>
-      <div class="card mb-4">
-        <table class="table table-light table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Method of Training</th>
-              <th scope="col">Training Hours</th>
-            </tr>
-          </thead>
-        
-          <tbody>
-            {% for method, hours in training_method_hours.items %}
-            <tr>
-              <th scope="row">{{ method }}</th>
-              <td>{{ hours }}</td>
-              {% endfor %}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!-- Offcanvas Sidebar -->
+</br>
+  <body>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#home">Hours Not Complete</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#menu1">Monthly User Stats</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#menu2">Training Method Stats</a>
+      </li>
+    </ul>
 
-{% endblock content %}
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane container active" id="home">
+      </br>
+          <div class="card mb-4">
+            <table class="table table-light table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Training Hours</th>
+                  <th scope="col">Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user, hours in total_hours.items %}
+                {% if hours < 12 %} <tr>
+                  <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
+                  <td>{{ hours }}</td>
+                  <td>{{ user.profile.role }}</td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <div class="tab-pane container fade" id="menu1">
+
+      </br>
+          <div class="card mb-4">
+            <table class="table table-light table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Training Hours</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user, hours in total_hours.items %}
+                <tr>
+                  <th scope="row">{{ user.first_name }} {{ user.last_name }}</th>
+                  <td>{{ hours }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="tab-pane container fade" id="menu2">
+      </br>
+          <div class="card mb-4">
+            <table class="table table-light table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Method of Training</th>
+                  <th scope="col">Training Hours</th>
+                </tr>
+              </thead>
+    
+              <tbody>
+                {% for method, hours in training_method_hours.items %}
+                <tr>
+                  <th scope="row">{{ method }}</th>
+                  <td>{{ hours }}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </body>
+
+  {% endblock content %}

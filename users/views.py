@@ -199,14 +199,13 @@ def password_change(request):
 def results_csv(request):
     global start_date
     global end_date
-    
+
     #find a way to pull the same information and pull the dates as well
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=results.csv'
     # Model 
     data = Entry.objects.filter(
             date_training_conducted__range=(start_date, end_date)).order_by('-date_training_conducted')
-
     #CSV Writer 
     writer = csv.writer(response)
 
