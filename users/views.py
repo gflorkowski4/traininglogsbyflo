@@ -136,12 +136,19 @@ def edit_profile(request):
         return render(request, 'registration/edit_profile.html', args)
 
 # SEARCH RESULTS
+start_date = ''
+end_date = ''
+
 @login_required
 def search_results(request):
+    global start_date
+    global end_date
+
     training_method_hours = {}
     total_hours = {}
     users = User.objects.all()
     bad_users = {}
+
 
     if request.method == 'POST':
         start_date = request.POST.get('start_date')
@@ -190,15 +197,18 @@ def password_change(request):
 
 
 def results_csv(request):
+    global start_date
+    global end_date
+    
     #find a way to pull the same information and pull the dates as well
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=results.csv'
-    data = Entry.objects.all()
+    # Model 
+    data = Entry.objects.filter(
+            date_training_conducted__range=(start_date, end_date)).order_by('-date_training_conducted')
 
     #CSV Writer 
     writer = csv.writer(response)
-    # Model
-    data = Entry.objects.all()
 
     writer.writerow(['Student Name','Role','Topic','Method of Training', 'Date Training Conducted', 'Training Hours'])
 
