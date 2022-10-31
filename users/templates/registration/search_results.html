@@ -7,11 +7,11 @@
 {% block content %}
 <form method="POST">
   {% csrf_token %}
-  <h4>Start Date: <input type="date" name="start_date" , placeholder="Start Date" /></h4>
+  <h4>Start Date: <input type="date" class="form-control w-25" name="start_date" , placeholder="Start Date" /></h4>
   </br>
-  <h4>End Date: <input type="date" name="end_date" /></h4>
+  <h4>End Date: <input class="form-control w-25"type="date" name="end_date" /></h4>
   </br>
-  <h4>Required Hours: <input type="number" name="req_hours" /></h4>
+  <h4>Required Hours: <input class="form-control w-25" type="number" name="req_hours" /></h4>
   </br>
   <h2><input class='btn btn-primary' type="submit" value="Search" /> <a href="{% url 'users:results_csv' %}"
       class="btn btn-primary">Get CSV</a> </h2>
