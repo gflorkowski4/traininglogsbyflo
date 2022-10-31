@@ -25,7 +25,8 @@ sources = [
     ('Netflix','Netflix'),
     ('YouTube','YouTube'),
     ('News Site','News Site'),
-    ('Educational Site','Educational Site')
+    ('Educational Site','Educational Site'),
+    ('N/A','N/A')
 ]
 class EntryForm(forms.ModelForm):
     class Meta:
