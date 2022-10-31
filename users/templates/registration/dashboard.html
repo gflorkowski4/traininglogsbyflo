@@ -12,27 +12,26 @@
       <div class="card-header text-dark">
         User Profile
       </div>
-    </br>
+      </br>
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><span class="badge bg-primary">Username: </span> {{owner.username}} </li>
-        </br>
+          </br>
           <li class="list-group-item"><span class="badge bg-primary">First Name:</span> {{owner.first_name}}</li>
-        </br>
+          </br>
           <li class="list-group-item"><span class="badge bg-primary">Last Name:</span> {{owner.last_name}}</li>
-        </br>
+          </br>
           <li class="list-group-item"><span class="badge bg-primary">Role:</span> {{owner.profile.role}}</li>
-        </br>
+          </br>
           <li class="list-group-item"><span class="badge bg-primary">{{ current_month}} Training Hours:</span> {{hours}}
           </li>
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
-              </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
             </div>
-          
+          </div>
         </ul>
       </div>
-    </br>
+      </br>
       <div class="card-body">
         <a href="{% url 'users:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
       </div>
@@ -49,7 +48,7 @@
             <th scope="col">Training Hours</th>
           </tr>
         </thead>
-      
+
         <tbody>
           {% for method, hours in training_method_hours.items %}
           <tr>
