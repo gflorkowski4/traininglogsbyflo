@@ -12,7 +12,7 @@ methods = [
     ('TSE','TSE'),
     ('Remote','Remote'),
     ('In Flight','In Flight'),
-    ('Class','Class'),
+    ('Course','Course'),
     ('Self Study','Self Study'),
     ('DSE', 'DSE'),
     ('CSPT','CSPT'),
