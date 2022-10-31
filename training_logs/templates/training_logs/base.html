@@ -20,30 +20,26 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
                 <a class="navbar-brand fw-bold py-1 px-2 " href="{% url 'training_logs:index' %}">Training Logs</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
                 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
                     <header class="mb-auto">
                         <div>
                             {% if user.is_authenticated %}
                             <nav class="nav nav-masthead justify-content-center  float-md-end">
-                                <a class="nav-link fw-bold py-1 px-2 text-light  active" aria-current="page"
+                                <a class="nav-link fw-bold py-1 px-1 text-light"
                                     href="{% url 'users:dashboard' %}">Dashboard</a>
                                 {% if user.is_superuser %}
-                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                <a class="nav-link fw-bold py-1 px-1 text-light"
                                     href="{% url 'users:admin_dashboard' %}">Admin-Dashboard</a>
                                 {% endif %}
-                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                <a class="nav-link fw-bold py-1 px-1 text-light"
                                     href="{% url 'training_logs:topics' %}">Topics</a>
                                     <a class="btn btn-outline-warning fw-bold py-1 px-1" href="{% url 'users:logout' %}">Log Out</a>
                             </nav>
                             {% else %}
                             <nav class="nav nav-masthead justify-content-center float-md-end">
-                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                <a class="nav-link fw-bold py-1 px-1 text-light"
                                     href="{% url 'users:register' %}">Register</a>
-                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                <a class="nav-link fw-bold py-1 px-1 text-light"
                                     href="{% url 'users:login' %}">Log-In</a>
                             </nav>
                             {% endif %}

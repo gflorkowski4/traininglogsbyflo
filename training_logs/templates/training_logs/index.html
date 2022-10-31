@@ -79,11 +79,11 @@
         <div>
         {% if user.is_authenticated %}
           <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="{% url 'users:dashboard' %}">Dashboard</a>
+            <a class="nav-link fw-bold py-1 px-0 " href="{% url 'users:dashboard' %}">Dashboard</a>
             {% if user.is_superuser %}
             <a class="nav-link fw-bold py-1 px-0" href="{% url 'users:admin_dashboard' %}">Admin-Dashboard</a>
             {% endif %}
-            <a class="nav-link fw-bold py-1 px-2" href="{% url 'training_logs:topics' %}">Topics</a>
+            <a class="nav-link fw-bold py-1 px-1" href="{% url 'training_logs:topics' %}">Topics</a>
             <a class="btn btn-outline-warning fw-bold py-1 px-1" href="{% url 'users:logout' %}">Log Out</a>
           </nav>
         {% else %}
