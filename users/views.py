@@ -46,7 +46,7 @@ def dashboard(request):
     user_count = User.objects.count()
     total_hours = {}
     
-    for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
+    for method in ['TSE', 'Remote', 'Course', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
         method_hours = 0
         for entry in entries:
                 if entry.topic.owner == request.user:
@@ -94,7 +94,7 @@ def admin_dashboard(request):
                         hours_total += entry.hours
             total_hours[user] = hours_total
 
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
+        for method in ['TSE', 'Remote', 'Course', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
             method_hours = 0
             for entry in entries:
                 if entry.month_published() == current_month:
@@ -160,7 +160,7 @@ def search_results(request):
             date_training_conducted__range=(start_date, end_date)).order_by('-date_training_conducted')
 
         # Query for Each Training Method Totals
-        for method in ['TSE', 'Remote', 'Class', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
+        for method in ['TSE', 'Remote', 'Course', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
             method_hours = 0
             for entry in data:
                 if entry.method_of_training == method:

@@ -14,53 +14,44 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
 
-<body class="d-flex flex-column h-50 bg-dark text-white">
+<body class="d-flex flex-column h-50 bg-dark text-white ">
     <main class="flex-shrink-0">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="{% url 'training_logs:index' %}">Training Logs</a>
+                <a class="navbar-brand fw-bold py-1 px-2 " href="{% url 'training_logs:index' %}">Training Logs</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
                         class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <p class="navbar-text">Hello, {{ user.first_name }}.</p>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:dashboard' %}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:logout' %}">Log-Out</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Entries
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'training_logs:topics' %}">Topics</a></li>
-                            </ul>
-                        </li>
-                        {% if user.is_superuser %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:admin_dashboard' %}">Admin Dashboard</a>
-                        </li>
-                        {% endif %}
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:login' %}">Log-In</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+                <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                    <header class="mb-auto">
+                        <div>
+                            {% if user.is_authenticated %}
+                            <nav class="nav nav-masthead justify-content-center  float-md-end">
+                                <a class="nav-link fw-bold py-1 px-2 text-light  active" aria-current="page"
+                                    href="{% url 'users:dashboard' %}">Dashboard</a>
+                                {% if user.is_superuser %}
+                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                    href="{% url 'users:admin_dashboard' %}">Admin-Dashboard</a>
+                                {% endif %}
+                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                    href="{% url 'training_logs:topics' %}">Topics</a>
+                                <a class="nav-link fw-bold py-1 px-2 text-light" href="{% url 'users:logout' %}">Log
+                                    Out</a>
+                            </nav>
+                            {% else %}
+                            <nav class="nav nav-masthead justify-content-center float-md-end">
+                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                    href="{% url 'users:register' %}">Register</a>
+                                <a class="nav-link fw-bold py-1 px-2 text-light"
+                                    href="{% url 'users:login' %}">Log-In</a>
+                            </nav>
+                            {% endif %}
+        </nav>
+        </div>
+        </header>
+        </div>
         </nav>
 
         <body>

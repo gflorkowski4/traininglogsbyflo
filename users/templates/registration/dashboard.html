@@ -1,6 +1,7 @@
 {% extends "training_logs/base.html" %}
 
 {% block page_header %}<h1>Welcome to your training profile {{ owner.first_name }}</h1>
+<hr/>
 {% endblock page_header %}
 
 {% block content %}
@@ -15,7 +16,7 @@
       </br>
       <div class="card-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><span class="badge bg-primary">Username: </span> {{owner.username}} </li>
+          <li class="list-group-item"><span class="badge bg-primary ">Username: </span> {{owner.username}} </li>
           </br>
           <li class="list-group-item"><span class="badge bg-primary">First Name:</span> {{owner.first_name}}</li>
           </br>
@@ -25,13 +26,12 @@
           </br>
           <li class="list-group-item"><span class="badge bg-primary">{{ current_month}} Training Hours:</span> {{hours}}
           </li>
-          <div class="progress">
+          <div class="progress" style="height:30px">
             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
             </div>
           </div>
         </ul>
       </div>
-      </br>
       <div class="card-body">
         <a href="{% url 'users:edit_profile' %}" class="btn btn-primary btn-lg">Edit Profile</a>
       </div>
