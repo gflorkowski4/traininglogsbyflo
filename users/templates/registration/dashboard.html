@@ -1,10 +1,11 @@
 {% extends "training_logs/base.html" %}
 
 {% block page_header %}<h1>Welcome to your training profile {{ owner.first_name }}</h1>
-<hr/>
+<hr />
 {% endblock page_header %}
 
 {% block content %}
+
 <div class="row">
   <div class="col">
     {% for user, hours in total_hours.items %}
@@ -24,10 +25,12 @@
           </br>
           <li class="list-group-item"><span class="badge bg-secondary">Role:</span> {{owner.profile.role}}</li>
           </br>
-          <li class="list-group-item"><span class="badge bg-secondary">{{ current_month}} Training Hours:</span> {{hours}}
+          <li class="list-group-item"><span class="badge bg-secondary">{{ current_month}} Training Hours:</span>
+            {{hours}}
           </li>
           <div class="progress" style="height:30px">
-            <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" style="width:{{style_percent}}%">
+            <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated"
+              style="width:{{style_percent}}%">
             </div>
           </div>
         </ul>

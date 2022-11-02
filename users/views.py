@@ -12,10 +12,16 @@ from .forms import EditUserForm, SignUpForm, EditProfileForm
 import csv
 from datetime import datetime
 
+#Graphing libraries
+from django.shortcuts import render
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
+
 # Create your views here for Users app
 
 @login_required
 def dashboard(request):
+   
     """Dashboard to present data"""
     current_month = datetime.now().strftime('%B')
     owner = request.user
@@ -25,6 +31,7 @@ def dashboard(request):
     users = User.objects.all()
     user_count = User.objects.count()
     total_hours = {}
+    monthly_hours = {}
     
     for method in ['TSE', 'Remote', 'Course', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']:
         method_hours = 0
@@ -43,6 +50,16 @@ def dashboard(request):
                     hours_total += entry.hours
         total_hours[user] = hours_total
     style_percent = total_hours[request.user]/12*100
+    #Line Graph for individual stuff by month
+    x_data = ['TSE', 'Remote', 'Course', 'In Flight', 'Self Study','DSE','CSPT','Global','CMCT','OPI','DLPT']
+    y_data = list(training_method_hours.values())
+
+
+
+    plot_div = plot([Scatter(x=x_data, y=y_data,
+                        mode='lines', name='test',
+                        opacity=0.8, marker_color='green')],
+               output_type='div')
     return render(request, 'registration/dashboard.html',
                   {'entries': entries,
                    'topics': topics,
@@ -51,7 +68,7 @@ def dashboard(request):
                    'total_hours': total_hours,
                    'current_month': current_month,
                    'style_percent':style_percent,
-                   'training_method_hours':training_method_hours,})
+                   'training_method_hours':training_method_hours,'plot_div': plot_div})
 
 
 @login_required
