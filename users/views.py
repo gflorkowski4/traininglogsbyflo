@@ -14,26 +14,6 @@ from datetime import datetime
 
 # Create your views here for Users app
 
-def register(request):
-    """Register a new user."""
-    if request.method != 'POST':
-        # Display Blank Registration Form
-        form = SignUpForm()
-    else:
-        # Process completed form
-        form = SignUpForm(data=request.POST)
-
-        if form.is_valid():
-            new_user = form.save()
-            # Log-in the user and redirect to home page
-            login(request, new_user)
-            new_profile = Profile.objects.create(user=request.user)
-            return redirect('training_logs:index')
-    # display a blank or invalid form
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
-
-
 @login_required
 def dashboard(request):
     """Dashboard to present data"""
