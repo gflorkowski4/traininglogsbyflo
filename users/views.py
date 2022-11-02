@@ -12,11 +12,6 @@ from .forms import EditUserForm, SignUpForm, EditProfileForm
 import csv
 from datetime import datetime
 
-#Graphing libraries
-from django.shortcuts import render
-from plotly.offline import plot
-from plotly.graph_objs import Scatter
-
 # Create your views here for Users app
 
 @login_required
