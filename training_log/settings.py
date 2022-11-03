@@ -3,14 +3,8 @@ import django_on_heroku
 from decouple import config
 import dj_database_url
 import os 
-import environ
 
-
-env = environ.Env()
-#reading the .env file 
-environ.Env.read_env()
-
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = 'django-insecure-3mqs3&m__nke!*2h@&4^)%$g&yv_g=u1a@c$depe90k7$+_#l6'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
